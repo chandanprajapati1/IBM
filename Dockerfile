@@ -3,17 +3,19 @@ FROM amazonlinux:latest
 # Install dependencies
 RUN yum update -y && \
     yum install -y httpd && \
-    yum search wget && \
-    yum install wget -y && 
+    yum install -y wget
 
-# change directory
+# Change directory
 WORKDIR /var/www/html
 
-# download webfiles
-RUN wget https://github.com/chandanprajapati1/IBM/index.html
+# Download webfiles
+RUN wget -O index.html https://raw.githubusercontent.com/chandanprajapati1/IBM/main/index.html
 
-# exposes port 80 on the container
+# Expose port 80 on the container
 EXPOSE 80
 
-# set the default application that will start when the container start
+# Set the default application that will start when the container starts
 ENTRYPOINT ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+
+# Default command to run when the container starts
+CMD ["apachectl", "-D", "FOREGROUND"]
