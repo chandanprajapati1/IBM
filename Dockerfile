@@ -14,8 +14,6 @@ RUN wget -O index.html https://raw.githubusercontent.com/chandanprajapati1/IBM/m
 # Expose port 80 on the container
 EXPOSE 80
 
-# Set the default application that will start when the container starts
-ENTRYPOINT ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 
 # Default command to run when the container starts
 CMD ["apachectl", "-D", "FOREGROUND"]
